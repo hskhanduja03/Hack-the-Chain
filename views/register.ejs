@@ -1,0 +1,75 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@700&family=Figtree:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../stylesheets/style.css">
+    <link rel="shortcut icon" href="../images/logo.b831a251.png" type="image/x-icon">
+</head>
+<body>
+    <form action="/register" method="post" autocomplete="off">
+        <div class="container">
+            <div class="pic2"></div>
+            <img src="../images/logo.b831a251.png" alt="">
+            <h1 style="width: 350px;">IIITK SWAR</h1>
+            <div class="inp">
+                <input type="email" autocomplete="off" id="username" name="email">
+                <label onclick="focusinp('usr')" for="Username">Email</label>
+            </div>
+            <div class="inp">
+                <input type="text" autocomplete="off" id="ok" name="rollNo">
+                <label onclick="focusinp('usr')" for="Username">Roll No</label>
+            </div>
+            <div class="inp">
+                <input type="text" autocomplete="off" id="username" name="username">
+                <label onclick="focusinp('usr')" for="Username">Username</label>
+            </div>
+            <div class="inp">
+                <input type="text" autocomplete="off" id="username" name="fullname">
+                <label onclick="focusinp('usr')" for="Username">Fullname</label>
+            </div>
+            <div class="inp">
+                <input type="password" id="password" name="password" autocomplete="off">
+                <label onclick="focusinp('pass')" for="Password">Password</label>
+            </div>
+            <div style="display: flex;"><a href="">Forgot Password? - Support</a></div>
+            <button type="submit" name="register">Register</button>
+            <a  onclick="myFunction()" href="/login">Have an account? Sign in</a>
+        </div>
+    </form>
+
+
+    
+    <div class="pic">
+    </div>
+
+    
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const inputs = document.querySelectorAll(".inp input");
+          
+            inputs.forEach(input => {
+              input.addEventListener("input", function() {
+                const label = this.nextElementSibling;
+                label.classList.toggle("up", this.value.trim() !== "");
+              });
+            });
+          });
+          
+          function focusinp(inp) {
+            if (inp == 'usr') {
+              document.getElementById("username").focus();
+            } else if (inp == 'pass') {
+              document.getElementById("password").focus();
+            } else {
+              document.getElementById("username").focus();
+            }
+          }
+    </script>
+</body>
+
+
+

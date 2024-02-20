@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IIITK SWAR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&family=Playfair+Display&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="../stylesheets/profile.css" />
+    <link rel="shortcut icon" href="../images/logo.b831a251.png" type="image/x-icon">
+  </head>
+  <body>
+
+
+    <% if (error === 'No file uploaded') { %>
+      <div class="toast">
+        <div class="toast-content">
+          <i class="fa-solid fa-exclamation" style="background-color: #FF3B30; padding:12px 20px; border-radius:50%"></i>  
+          <div class="message">
+            <span class="text text-1"><%= error %></span>
+            <span class="text text-2">Please upload a valid file</span>
+          </div>
+        </div>
+        <div class="progress"></div>
+      </div>
+    <% } %>
+    
+    <% if (error === 'Success') { %>
+      <div class="toast">
+        <div class="toast-content">
+          <i class="fa-regular fa-circle-check" style="background-color: #21a902; padding:15px; border-radius:50%"></i>
+          <!-- <i class="fa-solid fa-check"></i>   -->
+          <div class="message">
+            <span class="text text-1"><%= error %></span>
+            <span class="text text-2">File uploaded successfully</span>
+          </div>
+        </div>
+        <div class="progress2 progress"></div>
+      </div>
+    <% } %>
+    
+
+
+
+
+
+    <div class="navbar">
+      <div class="title">
+        <a href="/home">
+          <div class="logo"></div>
+          <h1>IIITK Swar</h1>
+        </a>
+      </div>
+      <ul>
+        <a href="/home" class="home-nav">Home</a>
+        <a href="/registerComplaint" class="complaints-nav">New Complaint</a>
+        <a href="/allcomplaint" class="complaints-nav">All Complaint</a>
+        <a href="/profile" class="profile-nav">Profile</a>
+      </ul>
+    </div>
+
+    <div class="hamburger-menu">
+      <input type="checkbox" />
+      <div class="lines">
+        <span class="line line1"></span>
+        <span class="line line2"></span>
+        <span class="line line3"></span>
+      </div>
+      <ul class="menu-items">
+        <li><a href="/" class="home-side-nav">Home</a></li>
+        <li><a href="/" class="complaints-side-nav">Complaint</a></li>
+        <li><a href="/" class="profile-side-nav">Profile</a></li>
+      </ul>
+    </div>
+
+    <div class="blue-box"></div>
+    <div class="profile-card">
+      <div class="profile-pic">
+        <img src="/images/uploads/<%= user.profileImage %>" alt="">
+      </div>
+      <div class="change">Change Image</div>
+      <form class="w-full" action="/update" method="post" enctype="multipart/form-data">
+        <input type="file" name="image" hidden id="imageinput" >
+        <input type="submit" value="Update Details" id="upd">
+      </form>
+
+      <div class="main-details">
+        <h1 class="username"><%= user.fullName.slice(0,15) %></h1>
+        <h6 class="email">Username : <b>@<%= user.username %></b></h6>
+        <h6 class="email">Email : <b><%= user.email %></b></h6>
+      </div>
+      <div class="roll-no">
+        <p class="roll-no-head">Roll no:</p>
+        <p class="roll-no-val"><b><%= user.rollNo ? user.rollNo.toUpperCase() : '' %></b></p>
+      </div>
+    </div>
+  </div>
+  <button type="submit" id="logbtn">Logout</button>
+    
+    <div class="my-complaints">
+      <h1 class="complaints-head">Your Complaints</h1>
+      <table>
+        <tr>
+          <th class="table-title">Title</th>
+          <th>Category</th>
+          <th>Status</th>
+          <th>Date</th>
+        </tr>
+        <div id="line"></div>
+        <% user.complaints.reverse().forEach(function(complaint){ %>
+          <tr>
+            <td><a href="/complaint/<%= complaint._id %>" id="first"><%= complaint.title %></a></td>
+            <td><%= complaint.category %></td>
+            <td><%= complaint.status %></td>
+            <td><%= complaint.dateCreated.toLocaleString() %></td>
+          </tr>
+        <% }) %>
+        
+      </table>
+    </div>
+
+
+
+
+    <script>
+      document.querySelector(".profile-pic").addEventListener("click", ()=>{
+        document.querySelector("#imageinput").click();
+      })
+
+      document.getElementById("logbtn").addEventListener("click", function() {
+          window.location.href = "/logout";
+      });
+    </script>
+
+
+
+
+
+    <script>
+      
+    const button = document.querySelector("button"),
+    toast = document.querySelector(".toast");
+  (closeIcon = document.querySelector("#closeIcon")),
+    (progress = document.querySelector(".progress"));
+  
+  let timer1, timer2;
+  
+  window.addEventListener("load", () => {
+    toast.classList.add("active");
+    progress.classList.add("active");
+  
+    timer1 = setTimeout(() => {
+      toast.classList.remove("active");
+    }, 5000); //1s = 1000 milliseconds
+  
+    timer2 = setTimeout(() => {
+      progress.classList.remove("active");
+    }, 5300);
+  });
+
+
+  
+    </script>
+    
+
+  </body>
+</html>

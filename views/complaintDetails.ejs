@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IIITK SWAR</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Mr+Dafoe&family=Playfair+Display&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.1.0/remixicon.css">
+    <link rel="icon" type="image/x-icon" href="../images/logo.b831a251.png" />
+    <link rel="stylesheet" href="../stylesheets/allcomplaint.css">
+  </head>
+  <body>
+    <div class="navbar">
+      <a href="/home">
+        <div class="title">
+          <div class="logo"></div>
+          <h1>IIITK Swar</h1>
+        </div>
+      </a>
+      <ul>
+        <a href="/home" class="home-nav">Home</a>
+        <a href="/registerComplaint" class="complaints-nav">New Complaint</a>
+        <a href="/allcomplaint" class="all-nav">All Complaints</a>
+        <a href="/profile" class="profile-nav">Profile</a>
+      </ul>
+    </div>
+
+    <div class="hamburger-menu">
+      <input type="checkbox" />
+      <div class="lines">
+        <span class="line line1"></span>
+        <span class="line line2"></span>
+        <span class="line line3"></span>
+      </div>
+      <ul class="menu-items">
+        <li><a href="/" class="home-side-nav">Home</a></li>
+        <li><a href="/" class="complaints-side-nav">New Complaint</a></li>
+        <li><a href="/" class="all-side-nav">All Complaints</a></li>
+        <li><a href="/" class="profile-side-nav">Profile</a></li>
+      </ul>
+    </div>
+
+    <div id="newcontent">
+      <div id="title">
+          <h2>Title :</h2>
+          <%= complaint.title %>
+          <a href="/upvote/<%= complaint._id %>" class="tooltip">
+              <i class="ri-arrow-up-circle-line"></i>
+              <p id="link"><%= complaint.upvotes.length %> upvotes</p>
+              <div class="tooltip-content">
+                  <% userdetails.upvotes.forEach((user) => { %>
+                    <span class="username">
+                      <img src="/images/uploads/<%= user.profileImage %>" alt="">
+                      <p class="userlink"><%= user.username %></p>
+                      </span>
+                  <% }); %>
+              </div>
+          </a>
+      </div>
+      <span><b>Date :</b> <%= complaint.dateCreated.toLocaleString() %></span>
+      <div id="content">
+          <h2>Description :</h2>
+          <%= complaint.content %>
+      </div>
+  </div>
+  
+  
+  </body>
+</html>

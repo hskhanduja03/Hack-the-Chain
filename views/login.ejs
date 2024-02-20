@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@700&family=Figtree:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="shortcut icon" href="../images/logo.b831a251.png" type="image/x-icon">
+    <link rel="stylesheet" href="../stylesheets/style.css" />
+  </head>
+  <body>
+    <form action="/login" method="post">
+      <div class="container">
+        <div class="pic2"><img src="../images/logo.b831a251.png" alt="" /></div>
+        <h1>IIITK SWAR</h1>
+        <div class="inp">
+          <input type="text" autocomplete="off" id="username" name="username" />
+          <label onclick="focusinp('usr')" for="Username">Username</label>
+        </div>
+        <div class="inp">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            autocomplete="off"
+          />
+          <label onclick="focusinp('pass')" for="Password">Password</label>
+        </div>
+        <div style="display: flex">
+          <a href="">Forgot Password? - Support</a>
+        </div>
+        <button type="submit" name="register">Login</button>
+        <a onclick="myFunction()" href="/register"
+          >Dont have a account? Sign up</a
+        >
+      </div>
+    </form>
+
+    <div class="pic"></div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const inputs = document.querySelectorAll(".inp input");
+
+        inputs.forEach((input) => {
+          input.addEventListener("input", function () {
+            const label = this.nextElementSibling;
+            label.classList.toggle("up", this.value.trim() !== "");
+          });
+        });
+      });
+
+      function focusinp(inp) {
+        if (inp == "usr") {
+          document.getElementById("username").focus();
+        } else if (inp == "pass") {
+          document.getElementById("password").focus();
+        } else {
+          document.getElementById("username").focus();
+        }
+      }
+    </script>
+  </body>
+</html>
