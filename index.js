@@ -8,25 +8,32 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const expressSession=require("express-session");
 
+var app = express();
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const passport = require('passport');
 const { log } = require('console');
-
-var app = express();
 const cors = require("cors")
+const corsConfig = {
+  origin: "*",
+  credential: true,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+};
+app.options("", cors(corsConfig));
+app.use(cors(corsConfig));
 
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
 
 const PORT = process.env.PORT;
 app.listen(PORT, ()=>{
   console.log("Listening to port", PORT);
 })
 
-app.use(cors());
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+
 app.use(expressSession({
   resave:false,
   saveUninitialized:true,
