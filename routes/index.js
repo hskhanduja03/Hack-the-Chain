@@ -59,7 +59,7 @@ router.post("/login", passport.authenticate("local", {
 });
 
 
-router.get("/home", isLoggedIn, async function(req,res){
+router.get("/home", async function(req,res){
   const user = await userModel.findOne({username: req.session.passport.user});
   res.render("home",{user});
 });
