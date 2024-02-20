@@ -39,34 +39,29 @@ router.post('/register', async (req, res) => {
 
 
 router.get("/login",checkAuthenticated, function(req,res){
-  console.log(req.flash('error'));
-  res.render("login",{error:req.flash('error')});
+  res.render("login",{});
 });
 
 router.get("/register",checkAuthenticated,function(req,res){
-  res.render("register",{error:req.flash('error')});
+  res.render("register",{});
 });
 
 
 router.get("/registerComplaint", isLoggedIn, function(req,res){
-  res.render("registerComplaint",{error:req.flash('error')});
+  res.render("registerComplaint",{});
 });
 
 
 router.post("/login", passport.authenticate("local", {
   successRedirect: "/",
-  failureRedirect: "/login",
-  failureFlash: true
+  failureRedirect: "/login"
 }), function(req, res) {
 });
 
 
 router.get("/home", isLoggedIn, async function(req,res){
-  // res.render("home",{error:req.flash('error')},users);
-  // const user=await userModel.findOne({username:req.session.passport.user});
-  // res.render('home', {footer: true,user});
   const user = await userModel.findOne({username: req.session.passport.user});
-  res.render("home",{error:req.flash('error'),user});
+  res.render("home",{user});
 });
 
 router.post('/createComplaint', async function(req, res) {
@@ -92,7 +87,7 @@ router.post('/createComplaint', async function(req, res) {
 
 
     const user = await userModel.findOne({username: req.session.passport.user }).populate("complaints");
-    res.render('allcomplaint',{error:req.flash('error'),user, complaints}); // Pass 'user' object here
+    res.render('allcomplaint',{user, complaints}); // Pass 'user' object here
 });
 
 
@@ -104,7 +99,7 @@ router.get("/profile", isLoggedIn, async function(req,res){
 
 router.get("/newcomplaint", isLoggedIn, async function(req,res){
   // const user = await userModel.findOne({username: req.session.passport.user}).populate("complaints");
-  res.render("newcomplaint",{error:req.flash('error')});
+  res.render("newcomplaint",{});
 });
 
 

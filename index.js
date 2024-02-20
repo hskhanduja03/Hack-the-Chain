@@ -7,7 +7,6 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const expressSession=require("express-session");
-const flash=require("connect-flash");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -27,24 +26,23 @@ app.listen(PORT, ()=>{
   console.log("Listening to port", PORT);
 })
 
-
+app.use(cors());
 app.use(expressSession({
   resave:false,
   saveUninitialized:true,
   secret:"hello",
   cookie: {maxAge:600000}
 }));
-app.use(flash());
 
 
-app.use(passport.initialize());
 app.use(passport.session());
+// app.use(passport.initialize());
 passport.serializeUser(usersRouter.serializeUser());
 passport.deserializeUser(usersRouter.deserializeUser());
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser('hello'));
 app.use(express.static(path.join(__dirname, 'public')));
 
