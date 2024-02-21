@@ -22,7 +22,7 @@ router.get('/', function(req, res, next) {
 //Register Route
 router.post('/register', async (req, res) => {
   const { username, email, fullname, rollNo } = req.body;
-  const defaultProfileImage = "default.png";
+  const defaultProfileImage = "https://res.cloudinary.com/dszaral5w/image/upload/v1708500956/xhgryxkfyj7fbbuuvkmf.png";
   const userData = new userModel({ username, email, fullName: fullname, rollNo, profileImage: defaultProfileImage});
 
   await userModel.register(userData, req.body.password)
