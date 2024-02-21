@@ -94,8 +94,9 @@ router.post('/createComplaint', async function(req, res) {
 
 router.get("/profile", isLoggedIn, async function(req,res){
   const error = req.query.error;
+  const success = req.query.success;
   const user = await userModel.findOne({username: req.session.passport.user}).populate("complaints");
-  res.render("profile",{user, error});
+  res.render("profile",{user, error, success});
 });
 
 router.get("/newcomplaint", isLoggedIn, async function(req,res){
@@ -200,6 +201,7 @@ router.post('/update', upload.single('image'), async function(req, res) {
     return res.redirect(`/profile?error=${encodeURIComponent(error.message)}`);
   }
 });
+
 
 
 

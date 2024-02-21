@@ -17,32 +17,33 @@
   <body>
 
 
-    <% if (error) { %>
+    <% if (success) { %>
       <div class="toast">
-        <div class="toast-content">
-          <i class="fa-solid fa-exclamation" style="background-color: #FF3B30; padding:12px 20px; border-radius:50%"></i>  
-          <div class="message">
-            <span class="text text-1"><%= error %></span>
-            <span class="text text-2">Please upload a valid file</span>
+          <div class="toast-content">
+              <i class="fa-regular fa-circle-check" style="background-color: #21a902; padding:15px; border-radius:50%"></i>
+              <!-- <i class="fa-solid fa-check"></i>   -->
+              <div class="message">
+                  <span class="text text-1">Success</span>
+                  <span class="text text-2"><%= success %></span>
+              </div>
           </div>
-        </div>
-        <div class="progress"></div>
+          <div class="progress2 progress"></div>
       </div>
-    <% } %>
-    
-    <% if (error) { %>
+  <% } %>
+  
+  <% if (error) { %>
       <div class="toast">
-        <div class="toast-content">
-          <i class="fa-regular fa-circle-check" style="background-color: #21a902; padding:15px; border-radius:50%"></i>
-          <!-- <i class="fa-solid fa-check"></i>   -->
-          <div class="message">
-            <span class="text text-1"><%= error %></span>
-            <span class="text text-2">File uploaded successfully</span>
+          <div class="toast-content">
+              <i class="fa-solid fa-exclamation" style="background-color: #FF3B30; padding:12px 20px; border-radius:50%"></i>  
+              <div class="message">
+                  <span class="text text-1"><%= error %></span>
+                  <span class="text text-2">Please upload a valid file</span>
+              </div>
           </div>
-        </div>
-        <div class="progress2 progress"></div>
+          <div class="progress"></div>
       </div>
-    <% } %>
+  <% } %>
+  
     
 
 
