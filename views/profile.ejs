@@ -17,7 +17,7 @@
   <body>
 
 
-    <% if (error === 'No file uploaded') { %>
+    <% if (error) { %>
       <div class="toast">
         <div class="toast-content">
           <i class="fa-solid fa-exclamation" style="background-color: #FF3B30; padding:12px 20px; border-radius:50%"></i>  
@@ -30,7 +30,7 @@
       </div>
     <% } %>
     
-    <% if (error === 'Success') { %>
+    <% if (error) { %>
       <div class="toast">
         <div class="toast-content">
           <i class="fa-regular fa-circle-check" style="background-color: #21a902; padding:15px; border-radius:50%"></i>
@@ -81,7 +81,7 @@
     <div class="blue-box"></div>
     <div class="profile-card">
       <div class="profile-pic">
-        <img src="/images/uploads/<%= user.profileImage %>" alt="">
+        <img src="<%= user.profileImage %>" alt="">
       </div>
       <div class="change">Change Image</div>
       <form class="w-full" action="/update" method="post" enctype="multipart/form-data">

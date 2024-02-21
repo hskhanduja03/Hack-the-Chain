@@ -4,6 +4,7 @@ const userModel=require("./users");
 const complaintModel = require("./complaints")
 const passport=require("passport");
 const upload=require("./multer");
+const cloudinary = require("../utils/cloudinary");
 
 
 const localStratergy=require("passport-local");
@@ -140,28 +141,66 @@ function checkAuthenticated(req,res,next){
 //     res.redirect('/profile');
 // });
 
-router.post('/update', upload.single('image'), async function(req, res) {
 
+//  ++++++++++++++++ more updated
+// router.post('/update', upload.single('image'), async function(req, res) {
+
+//   try {
+//     if (!req.file) {
+//       return res.redirect('/profile?error=No%20file%20uploaded'); // Redirect with error message
+//     }
+
+//     const user = await userModel.findOneAndUpdate(
+//       { username: req.session.passport.user },
+//       { profileImage: req.file.filename },
+//       { new: true }
+//     );
+
+//     if (!user) {
+//       throw new Error('User not found');
+//     }
+//     return res.redirect('/profile?error=Success');
+//   } catch (error) {
+//     console.error('Error updating user profile:', error);
+//     res.status(400).send(error.message); // Respond with a 400 status code and error message
+//   }
+// });
+
+
+
+
+
+// ++++++++++++    cloudinary version
+
+router.post('/update', upload.single('image'), async function(req, res) {
   try {
     if (!req.file) {
-      return res.redirect('/profile?error=No%20file%20uploaded'); // Redirect with error message
+      return res.redirect('/profile?error=No%20file%20uploaded'); 
+    }
+
+    const result = await cloudinary.uploader.upload(req.file.path);
+
+    if (!result) {
+      throw new Error('Failed to upload image to Cloudinary');
     }
 
     const user = await userModel.findOneAndUpdate(
       { username: req.session.passport.user },
-      { profileImage: req.file.filename },
+      { profileImage: result.url },
       { new: true }
     );
 
     if (!user) {
       throw new Error('User not found');
     }
-    return res.redirect('/profile?error=Success');
+
+    return res.redirect('/profile?success=Image%20updated%20successfully');
   } catch (error) {
     console.error('Error updating user profile:', error);
-    res.status(400).send(error.message); // Respond with a 400 status code and error message
+    return res.redirect(`/profile?error=${encodeURIComponent(error.message)}`);
   }
 });
+
 
 
 
