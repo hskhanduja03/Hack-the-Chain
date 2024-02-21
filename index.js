@@ -38,7 +38,7 @@ app.use(expressSession({
   resave:false,
   saveUninitialized:true,
   secret:"hello",
-  cookie: {maxAge:600000}
+  cookie: {maxAge:3600000}
 }));
 
 
