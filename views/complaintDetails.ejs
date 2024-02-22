@@ -76,7 +76,7 @@
         </div>
         
         <% if(complaint.createdBy.username === user.username && complaint.status==="Pending"){ %>
-          <div id="issue"><h4>Click here to Update the Status:</h4><button type="submit" id="resolvedbtn"><a style="text-decoration: none; color:black" href="/updateStatus/<%= complaint._id %>">Resolved</a></button></div>
+          <div id="issue"><h4>Is your Complaint resolved:</h4><button type="submit" id="resolvedbtn"><a style="text-decoration: none; color:black" href="/updateStatus/<%= complaint._id %>">Resolved</a></button></div>
         <% } %>
         
       </div>
