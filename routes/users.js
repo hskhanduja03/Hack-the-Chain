@@ -34,7 +34,18 @@ const UserSchema = new mongoose.Schema({
   },
   profileImage: {
     type: String,
-} 
+  },
+  role: {
+    type: String,
+    enum: ["Student", "Admin"],
+    default: "Student"
+  },
+  domain: {
+    type: String,
+    enum: ["Mess", "Network", "Academic"],
+    default: ""
+  },
+  
 });
 
 UserSchema.plugin(plm);

@@ -14,13 +14,32 @@
             <div class="pic2"></div>
             <img src="../images/logo.b831a251.png" alt="">
             <h1 style="width: 350px;">IIITK SWAR</h1>
+
+            <div class="role">
+              <h4>Select your Role</h4>
+              <select id="roleSelect" name="role">
+                <option class="op" value="Student">Student</option>
+                <option class="op" value="Admin">Admin</option>
+              </select>
+            </div>
+            
+            <div class="role" id="domainRole" style="display: none;">
+              <h4>Select your Domain</h4>
+              <select id="domainSelect" name="domain">
+                <option class="op" value="Mess">Mess</option>
+                <option class="op" value="Academic">Academic</option>
+                <option class="op" value="Network">Network</option>
+              </select>
+            </div>
+
+
             <div class="inp">
                 <input type="email" autocomplete="off" id="username" name="email">
                 <label onclick="focusinp('usr')" for="Username">Email</label>
             </div>
             <div class="inp">
                 <input type="text" autocomplete="off" id="ok" name="rollNo">
-                <label onclick="focusinp('usr')" for="Username">Roll No</label>
+                <label onclick="focusinp('usr')" for="Username">Institute ID</label>
             </div>
             <div class="inp">
                 <input type="text" autocomplete="off" id="username" name="username">
@@ -69,6 +88,26 @@
             }
           }
     </script>
+
+    <script>
+      const roleSelect = document.getElementById('roleSelect');
+  
+      // Get the domain role div
+      const domainRole = document.getElementById('domainRole');
+      
+      // Add event listener to role select element
+      roleSelect.addEventListener('change', function() {
+        // Check if the selected value is "Admin"
+        if (roleSelect.value === 'Admin') {
+          // Show the domain role div
+          domainRole.style.display = 'flex';
+        } else {
+          // Hide the domain role div
+          domainRole.style.display = 'none';
+        }
+      });
+    </script>
+
 </body>
 
 

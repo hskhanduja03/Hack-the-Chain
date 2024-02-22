@@ -21,9 +21,9 @@ router.get('/', function(req, res, next) {
 
 //Register Route
 router.post('/register', async (req, res) => {
-  const { username, email, fullname, rollNo } = req.body;
+  const { username, email, fullname, rollNo, role, domain } = req.body;
   const defaultProfileImage = "https://res.cloudinary.com/dszaral5w/image/upload/v1708500956/xhgryxkfyj7fbbuuvkmf.png";
-  const userData = new userModel({ username, email, fullName: fullname, rollNo, profileImage: defaultProfileImage});
+  const userData = new userModel({ username, email, fullName: fullname, rollNo, profileImage: defaultProfileImage, role, domain});
 
   await userModel.register(userData, req.body.password)
     .then(function () {
@@ -94,9 +94,10 @@ router.post('/createComplaint', async function(req, res) {
 
 router.get("/profile", isLoggedIn, async function(req,res){
   const error = req.query.error;
+  const complaints = await complaintModel.find({}).populate("createdBy")
   const success = req.query.success;
   const user = await userModel.findOne({username: req.session.passport.user}).populate("complaints");
-  res.render("profile",{user, error, success});
+  res.render("profile",{user, error, success, complaints});
 });
 
 router.get("/newcomplaint", isLoggedIn, async function(req,res){

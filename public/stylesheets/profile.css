@@ -133,7 +133,7 @@ li {
 
 .profile-card {
   width: 300px;
-  height: 60%;
+  height: 61%;
   position: fixed;
   z-index: 200;
   background-color: #ffffff;
@@ -206,9 +206,6 @@ td {
 table tr:first-child{
   background-color: rgb(225, 224, 224);
   height: 10vh;
-}
-table tr td:nth-child(3){
-  color: rgb(10, 228, 10);
 }
 tr td:nth-child(2){
   font-weight: 600;

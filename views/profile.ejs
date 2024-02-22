@@ -93,10 +93,17 @@
       <div class="main-details">
         <h1 class="username"><%= user.fullName.slice(0,15) %></h1>
         <h6 class="email">Username : <b>@<%= user.username %></b></h6>
+
+        <% if(user.role === "Admin"){ %>
+        <h6 class="email">Role : <b><%= user.role %>(<%= user.domain %>)</b></h6>
+          <% }else{ %>
+        <h6 class="email">Role : <b><%= user.role %></b></h6>
+            <% } %>
+
         <h6 class="email">Email : <b><%= user.email %></b></h6>
       </div>
       <div class="roll-no">
-        <p class="roll-no-head">Roll no:</p>
+        <p class="roll-no-head">Institute ID:</p>
         <p class="roll-no-val"><b><%= user.rollNo ? user.rollNo.toUpperCase().slice(0,10) : '' %>XX</b></p>
       </div>
     </div>
@@ -104,32 +111,64 @@
   <button type="submit" id="logbtn">Logout</button>
     
     <div class="my-complaints">
-      <h1 class="complaints-head">Your Complaints</h1>
-      <table>
-        <tr>
-          <th class="table-title">Title</th>
-          <th>Category</th>
-          <th>Status</th>
-          <th>Date</th>
-        </tr>
-        <div id="line"></div>
-        <% user.complaints.reverse().forEach(function(complaint){ %>
+      <% if(user.role === "Admin"){ %>
+        <h1 class="complaints-head">Complaints from Your Domain</h1>
+        <table>
           <tr>
-            <td><a href="/complaint/<%= complaint._id %>" id="first"><%= complaint.title %></a></td>
-            <td><%= complaint.category %></td>
-            <td>
-              <% if(complaint.status === "Resolved"){ %>
-                <div style="color: rgb(4, 205, 4);"><%= complaint.status %></div>
-                <% } %>
-              <% if(complaint.status === "Pending"){ %>
-                <div style="color: rgb(239, 37, 37);"><%= complaint.status %></div>
-                <% } %>
-            </td>
-            <td><%= complaint.dateCreated.toLocaleString() %></td>
+            <th class="table-title">Title</th>
+            <th>Category</th>
+            <th>Submitted By</th>
+            <th>Status</th>
+            <th>Date</th>
           </tr>
-        <% }) %>
-        
-      </table>
+          <!-- <div id="line"></div> -->
+          <% complaints.reverse().forEach(function(complaint){ %>
+            <% if(complaint.category === user.domain){ %>
+              <tr>
+                <td><a href="/complaint/<%= complaint._id %>" id="first"><%= complaint.title %></a></td>
+                <td><%= complaint.category %></td>
+                <td><a href="/user/<%= complaint.createdBy._id %>" id="first">@<%= complaint.createdBy.username %></a></td>
+                <td>
+                  <% if(complaint.status === "Resolved"){ %>
+                    <div style="color: rgb(4, 205, 4);"><%= complaint.status %></div>
+                    <% } %>
+                  <% if(complaint.status === "Pending"){ %>
+                    <div style="color: rgb(239, 37, 37);"><%= complaint.status %></div>
+                    <% } %>
+                </td>
+                <td><%= complaint.dateCreated.toLocaleString() %></td>
+              </tr>
+              <% } %>
+          <% }) %>          
+        </table>
+        <% }else{ %>
+          <h1 class="complaints-head">Your Complaints</h1>
+          <table>
+            <tr>
+              <th class="table-title">Title</th>
+              <th>Category</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+            <div id="line"></div>
+            <% user.complaints.reverse().forEach(function(complaint){ %>
+              <tr>
+                <td><a href="/complaint/<%= complaint._id %>" id="first"><%= complaint.title %></a></td>
+                <td><%= complaint.category %></td>
+                <td>
+                  <% if(complaint.status === "Resolved"){ %>
+                    <div style="color: rgb(4, 205, 4);"><%= complaint.status %></div>
+                    <% } %>
+                  <% if(complaint.status === "Pending"){ %>
+                    <div style="color: rgb(239, 37, 37);"><%= complaint.status %></div>
+                    <% } %>
+                </td>
+                <td><%= complaint.dateCreated.toLocaleString() %></td>
+              </tr>
+            <% }) %>
+            
+          </table>
+          <% } %>
     </div>
 
 

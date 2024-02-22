@@ -17,6 +17,7 @@ form{
   width: auto;
   margin-left: 13%;
   margin-right: 2%;  
+  margin-top: -2rem;
 }
 
 .container {
@@ -145,6 +146,29 @@ a {
 
 a:hover {
   text-decoration: underline;
+}
+
+.role{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200%;
+  gap: 0.5rem;
+  font-family: "poppins";
+}
+#roleSelect{
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.7rem;
+  background-color: #d1cece;
+  border: none;
+}
+#domainSelect{
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.7rem;
+  background-color: #d1cece;
+  border: none;
 }
 
 img {
