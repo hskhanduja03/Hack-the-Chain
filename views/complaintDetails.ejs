@@ -62,13 +62,31 @@
               </div>
           </a>
       </div>
-      <span><b>Date :</b> <%= complaint.dateCreated.toLocaleString() %></span>
+      <span><div class="date"><b>Date :</b> <%= complaint.dateCreated.toLocaleString() %></div><div class="user"><b>Raised By : </b><%= complaint.createdBy.fullName %></div></span>
       <div id="content">
-          <h2>Description :</h2>
+          <h2>Description : <span><b>Status:</b><p>&nbsp;
+            <% if(complaint.status === "Resolved"){ %>
+              <div style="color: rgb(4, 205, 4);"><%= complaint.status %></div>
+              <% } %>
+            <% if(complaint.status === "Pending"){ %>
+              <div style="color: rgb(239, 37, 37);"><%= complaint.status %></div>
+              <% } %>
+          </p></span></h2>
           <%= complaint.content %>
+        </div>
+        
+        <% if(complaint.createdBy.username === user.username && complaint.status==="Pending"){ %>
+          <div id="issue"><h4>Click here to Update the Status:</h4><button type="submit" id="resolvedbtn"><a style="text-decoration: none; color:black" href="/updateStatus/<%= complaint._id %>">Resolved</a></button></div>
+        <% } %>
+        
       </div>
-  </div>
   
   
+
+      <script>
+        document.querySelector("#resolvedbtn").addEventListener("click", ()=>{
+          window.location.href = "/updateStatus/"
+        })
+      </script>
   </body>
 </html>

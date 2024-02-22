@@ -5,7 +5,8 @@
   }
   body{
     border: border-box;
-    overflow: hidden;
+    overflow-x: hidden;
+    /* overflow: hidden; */
     font-family: "poppins";
   }
   .navbar {
@@ -128,13 +129,14 @@
     position: absolute;
     top: 12%;
     
-    margin: 50px;
+    margin: 50px 4.5vw;
     width: 100%;
     font-family: "Poppins", sans-serif;
     color: #003366;
   }
   .all-complaints-head {
     margin-bottom: 30px;
+    margin: 0 0 30px 10px
   }
   table {
     width: 90%;
@@ -226,6 +228,11 @@
   #content{
     margin-top: 2vh;
   }
+  #content h2{
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+  }
 
   #first{
     text-decoration: none;
@@ -237,6 +244,9 @@
   #newcontent span{
     color: rgb(129, 127, 127);
     font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 
 
@@ -304,4 +314,31 @@
 
 #link{
   text-decoration: none;
+}
+
+#resolvedbtn{
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  border-radius: 10px;
+  height: 1rem;
+  border: none;
+  background-color: rgb(192, 195, 191);
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: 0.2s ease-in-out;
+  cursor: pointer;
+}
+#resolvedbtn:hover{
+  background-color: rgb(82, 223, 6);
+  transform: scale(1.01);
+}
+#issue{
+  display: flex;
+  font-weight: 400;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
 }

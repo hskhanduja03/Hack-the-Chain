@@ -97,7 +97,7 @@
       </div>
       <div class="roll-no">
         <p class="roll-no-head">Roll no:</p>
-        <p class="roll-no-val"><b><%= user.rollNo ? user.rollNo.toUpperCase() : '' %></b></p>
+        <p class="roll-no-val"><b><%= user.rollNo ? user.rollNo.toUpperCase().slice(0,10) : '' %>XX</b></p>
       </div>
     </div>
   </div>
@@ -117,7 +117,14 @@
           <tr>
             <td><a href="/complaint/<%= complaint._id %>" id="first"><%= complaint.title %></a></td>
             <td><%= complaint.category %></td>
-            <td><%= complaint.status %></td>
+            <td>
+              <% if(complaint.status === "Resolved"){ %>
+                <div style="color: rgb(4, 205, 4);"><%= complaint.status %></div>
+                <% } %>
+              <% if(complaint.status === "Pending"){ %>
+                <div style="color: rgb(239, 37, 37);"><%= complaint.status %></div>
+                <% } %>
+            </td>
             <td><%= complaint.dateCreated.toLocaleString() %></td>
           </tr>
         <% }) %>

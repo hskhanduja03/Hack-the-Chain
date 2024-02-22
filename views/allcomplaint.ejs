@@ -60,7 +60,14 @@
             <td><a href="/complaint/<%= complaint._id %>" id="first"><%= complaint.title %></a></td>
             <td><%= complaint.category %></td>
             <td><a href="/user/<%= complaint.createdBy._id %>" id="first">@<%= complaint.createdBy.username %></a></td>
-            <td><%= complaint.status %></td>
+            <td>
+              <% if(complaint.status === "Resolved"){ %>
+                <div style="color: rgb(4, 205, 4);"><%= complaint.status %></div>
+                <% } %>
+              <% if(complaint.status === "Pending"){ %>
+                <div style="color: rgb(239, 37, 37);"><%= complaint.status %></div>
+                <% } %>
+            </td>
             <td><%= complaint.dateCreated.toLocaleString() %></td>
           </tr>
         <% }) %>

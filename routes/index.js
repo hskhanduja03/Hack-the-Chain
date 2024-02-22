@@ -54,7 +54,7 @@ router.get("/registerComplaint", isLoggedIn, function(req,res){
 
 
 router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
+  successRedirect: "/registerComplaint",
   failureRedirect: "/login"
 }), function(req, res) {
 });
@@ -212,7 +212,7 @@ router.post('/update', upload.single('image'), async function(req, res) {
 
 router.get('/complaint/:id', async (req, res) => {
   try {
-    const complaint = await complaintModel.findById(req.params.id);
+    const complaint = await complaintModel.findById(req.params.id).populate("createdBy");
     const userdetails=await complaintModel.findById(req.params.id).populate("upvotes");
     if (!complaint) {
       return res.status(404).send('Complaint not found');
@@ -226,6 +226,15 @@ router.get('/complaint/:id', async (req, res) => {
   }
 });
 
+
+router.get("/updateStatus/:id", async (req, res)=>{
+  const updatedComplaint = await complaintModel.findOneAndUpdate(
+    { _id: req.params.id },
+    { status: "Resolved" },
+    { new: true }
+  );
+  return res.redirect(`/complaint/${updatedComplaint._id}`)
+})
 
 router.get('/upvote/:id', async (req, res)=>{
   const user=await userModel.findOne({username:req.session.passport.user});
