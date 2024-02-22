@@ -47,7 +47,8 @@
     <div class="all-complaints">
       <div id="userProfile">
         <div id="image"><img src="<%= user.profileImage %>" alt=""></div>
-        <div id="username"><h3>Complaints made by : @<%= user.username %></h3></div>
+        <div id="username"><h3><b style="color: black; font-size:1rem;">Complaints made by :</b>  <%= user.fullName %> <i>[@<%= user.username %>]</i></h3></div>
+        <div id="username"><h3><b style="color: black; font-size:1rem;">Institute ID: </b><%= user.rollNo.slice(0,10) %>XX</h3></div>
       </div>
       <table>
         <tr>
