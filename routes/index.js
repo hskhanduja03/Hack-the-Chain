@@ -34,7 +34,7 @@ router.post('/register', async (req, res) => {
     .catch(function (err) {
       // Handle any registration errors here
       console.error("Registration error:", err);
-      res.redirect("/register"); // Redirect to a registration error page or form
+      res.redirect("/register");
     });
 });
 
