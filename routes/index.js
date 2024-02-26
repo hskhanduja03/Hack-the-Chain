@@ -40,7 +40,8 @@ router.post('/register', async (req, res) => {
 
 
 router.get("/login",checkAuthenticated, function(req,res){
-  res.render("login",{});
+  const error = req.query.error;
+  res.render("login",{error});
 });
 
 router.get("/register",checkAuthenticated,function(req,res){
@@ -53,11 +54,25 @@ router.get("/registerComplaint", isLoggedIn, function(req,res){
 });
 
 
-router.post("/login", passport.authenticate("local", {
-  successRedirect: "/",
-  failureRedirect: "/login"
-}), function(req, res) {
+router.post("/login", function(req, res, next) {
+  passport.authenticate("local", function(err, user, info) {
+    if (err) {
+      return next(err); // Forward error to the next middleware
+    }
+    if (!user) {
+      // Authentication failed, redirect to login page with error message
+      return res.redirect("/login?error=" + encodeURIComponent(info.message));
+    }
+    // If authentication succeeds, redirect to the homepage
+    req.logIn(user, function(err) {
+      if (err) {
+        return next(err);
+      }
+      return res.redirect("/");
+    });
+  })(req, res, next);
 });
+
 
 
 router.get("/home", async function(req,res){

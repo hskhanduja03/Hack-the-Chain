@@ -9,10 +9,34 @@
       href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@700&family=Figtree:wght@700&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="shortcut icon" href="../images/logo.b831a251.png" type="image/x-icon">
     <link rel="stylesheet" href="../stylesheets/style.css" />
   </head>
   <body>
+
+
+
+    
+    <% if (error) { %>
+      <div class="toast">
+          <div class="toast-content">
+              <i class="fa-solid fa-exclamation" style="background-color: #FF3B30; padding:15px 20px; border-radius:50%"></i>  
+              <div class="message">
+                  <span class="text text-1"><%= error %></span>
+              </div>
+          </div>
+          <div class="progress"></div>
+      </div>
+  <% } %>
+  
+
+
+
+
+
+
+
     <form action="/login" method="post">
       <div class="container">
         <div class="pic2"><img src="../images/logo.b831a251.png" alt="" /></div>
@@ -64,5 +88,39 @@
         }
       }
     </script>
+
+
+
+
+
+    <script>
+      
+      const button = document.querySelector("button"),
+      toast = document.querySelector(".toast");
+    (closeIcon = document.querySelector("#closeIcon")),
+      (progress = document.querySelector(".progress"));
+    
+    let timer1, timer2;
+    
+    window.addEventListener("load", () => {
+      toast.classList.add("active");
+      progress.classList.add("active");
+    
+      timer1 = setTimeout(() => {
+        toast.classList.remove("active");
+      }, 5000); //1s = 1000 milliseconds
+    
+      timer2 = setTimeout(() => {
+        progress.classList.remove("active");
+      }, 5300);
+    });
+  
+  
+    
+      </script>
+
+
+
+
   </body>
 </html>
