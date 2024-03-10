@@ -1,5 +1,7 @@
 # IIITK Swar: Your voice, our community.
-## A Comaplint Portal - [Click here to visit  the live website](https://iiitk-swar.vercel.app/)
+## A Comaplint Portal 
+### [Click here to visit  the live website on Vercel ;)](https://iiitk-swar.vercel.app/)
+### [Click here to visit  the live website on Render ;)](https://iiitk-swar.vercel.app/)
 
 <img src="./public/images/home.png">
 
